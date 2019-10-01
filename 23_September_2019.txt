@@ -1,0 +1,6 @@
+TS --> 23_September_2019_16_13_57, Endpoint --> /user/login, Method --> OPTIONS, Host --> localhost:1234
+TS --> 23_September_2019_16_13_57, Endpoint --> /user/login, Method --> POST, Host --> localhost:1234
+TS --> 23_September_2019_16_14_27, Endpoint --> /user/login, Method --> OPTIONS, Host --> localhost:1234
+TS --> 23_September_2019_16_14_27, Endpoint --> /user/login, Method --> POST, Host --> localhost:1234
+TS --> 23_September_2019_16_15_46, Endpoint --> /exam/fetchAllExams, Method --> OPTIONS, Host --> localhost:1234
+TS --> 23_September_2019_16_15_46, Endpoint --> /exam/fetchAllExams, Method --> GET, Host --> localhost:1234
