@@ -1,4 +1,4 @@
-const colors = require('colors');
+//const colors = require('colors');
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const joi = require('joi');
@@ -26,7 +26,7 @@ const getCurrentDay = (currentDate) => {
 
 const sendResponse = (res, payload = {}, error = {}) => {
     if (error) {
-        console.log(colors.red(error));
+        console.log(error);
         res.json({ result: 'failure', payload: error })
     } else {
         res.json({ result: 'success', payload })

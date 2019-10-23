@@ -7,7 +7,8 @@ const submitResult = (req, res) => {
         if (error) {
             console.log(error);
         } else {
-            utilities.print(payload, 'yellow');
+            //utilities.print(payload, 'yellow');
+            //console.log(payload);
             const actualAnswers = payload;
             const userAnswers = req.body.answers;
             const userName = req.body.userName;
@@ -24,7 +25,8 @@ const submitResult = (req, res) => {
             });
             resultToSave.save((error) => {
                 if (error) {
-                    utilities.print(error, 'red');
+                    //utilities.print(error, 'red');
+                    console.log(error);
                 } else {
                     res.json(result);
                 }
