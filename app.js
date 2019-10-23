@@ -28,4 +28,4 @@ app.use('/question', QuestionRoutes);
 app.use('/result', resultRoutes);
 app.use('/user', loginRoutes);
 
-app.listen(config.portNumber, () => console.log('server started'));
+app.listen(process.env.PORT || config.portNumber, () => console.log('server started'));
