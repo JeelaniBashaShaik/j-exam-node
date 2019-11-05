@@ -8,8 +8,8 @@ let resultSchema = new schema({
     userName:{type:String},
     correctCount:{type:Number},
     lastAttemptDate:{type:String},
-    examFamily:{type:String},
-    examDescription:{type:String}
+    family:{type:String},
+    description:{type:String}
 })
 
 module.exports = mongoose.model('results', resultSchema);

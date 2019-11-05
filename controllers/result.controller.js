@@ -12,12 +12,11 @@ const submitResult = (req, res) => {
             const userAnswers = req.body.answers;
             const userName = req.body.userName;
             const eid = req.body.eid;
-            const result = calculateResult(userName, eid, actualAnswers, userAnswers);
-            examSchema.find({ eid: req.body.eid}, (error, examDetails) => {
+            let result = calculateResult(userName, eid, actualAnswers, userAnswers);
+            examSchema.findOne({ eid: req.body.eid}, (error, examDetails) => {
                 if (error) {
                     console.log(error);
                 } else {
-                    console.log(examDetails, 'exam details');
                     let resultToSave = new ResultSchema({
                         eid: result.eid,
                         userName: result.userName,
@@ -26,13 +25,14 @@ const submitResult = (req, res) => {
                         wrongCount: result.wrongCount,
                         totalCount: result.totalCount,
                         lastAttemptDate: Date.now(),
-                        examFamily: examDetails.family,
-                        examDescription: examDetails.description
+                        family: examDetails.family,
+                        description: examDetails.description
                     });
                     resultToSave.save((error) => {
                         if (error) {
                             console.log(error);
                         } else {
+                            result = {...result, family: examDetails.family, description: examDetails.description};
                             res.json(result);
                         }
                     })

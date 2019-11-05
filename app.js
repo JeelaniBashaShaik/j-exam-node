@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(utilities.logger);
-//app.use(utilities.verifyToken);
+app.use(utilities.verifyToken);
 app.use('/exam', examRoutes);
 app.use('/question', QuestionRoutes);
 app.use('/result', resultRoutes);
