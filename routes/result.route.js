@@ -12,4 +12,8 @@ router.post('/fetchResult', ResultsController.fetchResult);
 router.get('/fetchAllResults', ResultsController.fetchAllResults);
 
 router.post('/deleteResult', ResultsController.deleteResult);
+
+// fetch results of all exams completed by specific user
+router.post('/fetchCompletedExams', ResultsController.fetchCompletedExams);
+
 module.exports = router;

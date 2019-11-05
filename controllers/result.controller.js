@@ -1,36 +1,43 @@
 const ResultSchema = require('./../models/result.model');
 const QuestionSchema = require('./../models/question.model');
 const utilities = require('./../utilities');
+const examSchema = require('./../models/exam.model');
 
 const submitResult = (req, res) => {
     QuestionSchema.find({ eid: req.body.eid }, { "_id": 0 }, (error, payload) => {
         if (error) {
             console.log(error);
         } else {
-            //utilities.print(payload, 'yellow');
-            //console.log(payload);
             const actualAnswers = payload;
             const userAnswers = req.body.answers;
             const userName = req.body.userName;
             const eid = req.body.eid;
             const result = calculateResult(userName, eid, actualAnswers, userAnswers);
-            let resultToSave = new ResultSchema({
-                eid: result.eid,
-                userName: result.userName,
-                finalResult: result.finalResult,
-                correctCount: result.correctCount,
-                wrongCount: result.wrongCount,
-                totalCount: result.totalCount,
-                lastAttemptDate: Date.now()
-            });
-            resultToSave.save((error) => {
+            examSchema.find({ eid: req.body.eid}, (error, examDetails) => {
                 if (error) {
-                    //utilities.print(error, 'red');
                     console.log(error);
                 } else {
-                    res.json(result);
+                    console.log(examDetails, 'exam details');
+                    let resultToSave = new ResultSchema({
+                        eid: result.eid,
+                        userName: result.userName,
+                        finalResult: result.finalResult,
+                        correctCount: result.correctCount,
+                        wrongCount: result.wrongCount,
+                        totalCount: result.totalCount,
+                        lastAttemptDate: Date.now(),
+                        examFamily: examDetails.family,
+                        examDescription: examDetails.description
+                    });
+                    resultToSave.save((error) => {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            res.json(result);
+                        }
+                    })
                 }
-            })
+            });
         }
     });
 
@@ -95,9 +102,16 @@ const fetchAllResults = (req, res) => {
         utilities.sendResponse(res, payload, error);
     })
 }
+
+const fetchCompletedExams = (req, res) => {
+    ResultSchema.find({ userName: req.body.userName }, { "_id": 0, "__v": 0, "finalResult": 0 }, (error, payload) => {
+        utilities.sendResponse(res, payload, error);
+    })
+}
 module.exports = {
     submitResult,
     fetchResult,
     fetchAllResults,
-    deleteResult
+    deleteResult,
+    fetchCompletedExams
 }

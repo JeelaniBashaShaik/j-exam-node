@@ -12,5 +12,4 @@ router.post('/updateExam', examController.updateExam);
 
 router.post('/deleteExam', examController.deleteExam);
 
-
 module.exports = router;

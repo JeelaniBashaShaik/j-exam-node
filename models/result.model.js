@@ -7,7 +7,9 @@ let resultSchema = new schema({
     finalResult:{type:Array},
     userName:{type:String},
     correctCount:{type:Number},
-    lastAttemptDate:{type:String}
+    lastAttemptDate:{type:String},
+    examFamily:{type:String},
+    examDescription:{type:String}
 })
 
 module.exports = mongoose.model('results', resultSchema);

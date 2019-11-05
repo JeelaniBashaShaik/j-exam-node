@@ -12,6 +12,7 @@ const loginRoutes = require('./routes/login.route');
 const dbUrl = `mongodb://${config.dbUserName}:${config.dbPassword}@ds125272.mlab.com:25272/inc-exam`;
 
 const app = express();
+
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true }, () => console.log('connected to mongodb'))
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
