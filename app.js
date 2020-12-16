@@ -9,7 +9,8 @@ const QuestionRoutes = require('./routes/question.route');
 const resultRoutes = require('./routes/result.route');
 const loginRoutes = require('./routes/login.route');
 
-const dbUrl = `mongodb://${config.dbUserName}:${config.dbPassword}@ds125272.mlab.com:25272/inc-exam`;
+// const dbUrl = `mongodb://${config.dbUserName}:${config.dbPassword}@ds125272.mlab.com:25272/inc-exam`;
+const dbUrl = `mongodb+srv://examAdmin:${config.dbPassword}@cluster0.2wqcm.mongodb.net/inc-exam?retryWrites=true&w=majority`;
 
 const app = express();
 
